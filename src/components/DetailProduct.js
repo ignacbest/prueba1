@@ -30,18 +30,14 @@ import {faTwitter, faFacebook, faInstagram} from '@fortawesome/free-brands-svg-i
      return (
     <Container>
         <Row>
-            <Col>
+            <Col style={{padding: 30}}>
             <Card>
                 <img src={`http://192.168.31.124:8000/images/${publicacion.imagen}`} width="300" height="300" alt="DetailProduct"/>
                 </Card>
-                
             </Col>
-            
-            <Col>
-            
+            <Col style={{padding: 30}}>
             <h1 className="m-4 p-4">{publicacion.titulo}</h1>
             {publicacion.descripcion_L}
-
             <h4 className="my-2 py-1">PRECIO ${publicacion.precio}</h4>
             <Button className="my-2">Agregar al carro</Button>
             <aside>
