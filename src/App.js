@@ -19,7 +19,7 @@ function App() {
   useEffect(checkUser, []);
   
   function checkUser() {
-    fetch('http://localhost:8000/auth/check', {
+    fetch('http://192.168.31.124:8000/auth/check', {
       credentials: 'include',
     })
       .then((response) => response.json())

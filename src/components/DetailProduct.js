@@ -12,17 +12,17 @@ import {faTwitter, faFacebook, faInstagram} from '@fortawesome/free-brands-svg-i
     const id = props.match.params.id
 
     useEffect( () => {
-        getPub()
-    }, [id]);
+                    async function getPub() {
+                    const url = `http://192.168.31.124:8000/publicaciones/${id}`
+                    const response = await fetch(url);
+                    const data = await response.json();
+            
+                    setPublicacion(data[0]);
+                    }
+                    getPub()
+                }, [id]);
 
-    async function getPub() {
-        const url = `http://localhost:8000/publicaciones/${id}`
-        const response = await fetch(url);
-        const data = await response.json();
-
-        setPublicacion(data[0]);
-
-    }
+    
 
     if (!publicacion){
         return <p>Error 404</p>
@@ -32,7 +32,7 @@ import {faTwitter, faFacebook, faInstagram} from '@fortawesome/free-brands-svg-i
         <Row>
             <Col>
             <Card>
-                <img src={`http://localhost:8000/images/${publicacion.imagen}`} width="300" height="300" alt="DetailProduct"/>
+                <img src={`http://192.168.31.124:8000/images/${publicacion.imagen}`} width="300" height="300" alt="DetailProduct"/>
                 </Card>
                 
             </Col>
@@ -45,7 +45,7 @@ import {faTwitter, faFacebook, faInstagram} from '@fortawesome/free-brands-svg-i
             <h4 className="my-2 py-1">PRECIO ${publicacion.precio}</h4>
             <Button className="my-2">Agregar al carro</Button>
             <aside>
-            <small class="d-none d-md-inline-block">Compartir en:</small>
+            <small className="d-none d-md-inline-block">Compartir en:</small>
                 <a href="https://twitter.com" title="Compartir en Twitter" target="_blank" rel="nofollow noopener noreferrer"><FontAwesomeIcon className="mx-2" icon={faTwitter}/></a>
                 <a href="https://facebook.com" title="Compartir en Facebook" target="_blank" rel="nofollow noopener noreferrer"><FontAwesomeIcon className="mx-2" icon={faFacebook}/></a>
                 <a href="https://instagram.com" title="Compartir en Instagram" target="_blank" rel="nofollow noopener noreferrer"><FontAwesomeIcon className="mx-2" icon={faInstagram}/></a>

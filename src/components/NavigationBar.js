@@ -11,7 +11,7 @@ import Button from 'react-bootstrap/Button'
 
 import styles from './Navigation.module.css'
 
-import {Link, useHistory} from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 
 //images
 
@@ -46,59 +46,41 @@ export default function NavigationBar(props) {
     };
 
     const handleCreate = async (nombre, apellido, email, password) => {
-        const url = 'http://localhost:8000/usuarios'
-
-        const params = {
-            nombre,
-            apellido,
-            email,
-            password
-        }
-
+        const url = 'http://192.168.31.124:8000/usuarios'
+        const params = { nombre, apellido, email, password }
         const response = await fetch(url, {
             method: 'POST',
             body: JSON.stringify(params),
             headers: {'Content-Type': 'application/json'}
            })  
-
            const data = await response.json();
-
            if (response.status === 200) { 
             handleCloseRegisterLogin()
            } else {
             alert(data.message)
            }
-
     }
+
     const handleLogin = async(email, password) => {
-        const url = 'http://localhost:8000/auth'
-
-        const params = {
-        email,
-        password
-    }
-
+        const url = 'http://192.168.31.124:8000/auth'
+        const params = { email, password }
         const response = await fetch(url, {
              method: 'POST',
              body: JSON.stringify(params),
              headers: {'Content-Type': 'application/json'},
              credentials: 'include', 
-            });
-
+        });
         const data = await response.json();
-
         if(response.status === 200) {
            props.updateUser({ name: data.data })
-           
             handleCloseLogin();
         } else {
             alert(data.message)
         }
-        
     };
 
     const handleLogout = async () =>{
-        const url = 'http://localhost:8000/auth'
+        const url = 'http://192.168.31.124:8000/auth'
         const response = await fetch(url,{
             method: 'DELETE',
             credentials: 'include',
@@ -109,7 +91,6 @@ export default function NavigationBar(props) {
         } else {
             alert(data.message)
         }
-
     }
 
     const handleHistory = (cat_id) => {
@@ -120,11 +101,9 @@ export default function NavigationBar(props) {
     return (
         <>
             <Navbar style={navbarStyle} expand="lg">
-                <Link to="/">
                 <Navbar.Brand onClick = {() => props.setCategoria(1)} href="/">
                     <img className={styles.logo} src={logo} alt="logo"/>
                 </Navbar.Brand>
-                </Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav"> 
                         <Nav.Link className={styles.navLink} onClick = {() => handleHistory(1)}>Comidas</Nav.Link>
@@ -136,9 +115,9 @@ export default function NavigationBar(props) {
                     {props.user ? (
 
             <>  
-                    <Link to="/favoritos" className="nav-link">
+                    <Nav.Link to="/favoritos" className="nav-link">
                         Favoritos
-                    </Link>
+                    </Nav.Link>
 
                     <NavDropdown
                         alignRight

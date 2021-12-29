@@ -10,31 +10,34 @@ export default function PubList(props) {
     const {categoria} = props
 
     useEffect( () => {
-        getPubs()
-        getCategoria()
-    }, [categoria]);
+                    async function getPubs() {
+                        const url = `http://192.168.31.124:8000/publicaciones/categoria/${categoria}`
+                        const response = await fetch(url);
+                        const data = await response.json();
+                        if(data){
+                            setPublicaciones(data);
+                        } 
+                    }
+                    async function getCategoria () {
+                        const url = `http://192.168.31.124:8000/categorias/${categoria}`
+                        const response = await fetch(url);
+                        const data = await response.json();
+                        if(data){
+                            setCategoriaName(data[0].nombre);
+                        } 
+                    }
+                    getPubs()
+                    getCategoria()
+                }, [categoria]);
         
-    async function getCategoria () {
-        const url = `http://localhost:8000/categorias/${categoria}`
-        const response = await fetch(url);
-        const data = await response.json();
-        
-        setCategoriaName(data[0].nombre);
-
-    }
-    async function getPubs() {
-        const url = `http://localhost:8000/publicaciones/categoria/${categoria}`
-        const response = await fetch(url);
-        const data = await response.json();
-
-        setPublicaciones(data);
-
-    }
+    
+    
 
     function getCards() {
-    const cards = publicaciones.map((publicacion) =>{
+    const cards = publicaciones.map( (publicacion, i) =>{
         return (
             <PubCard
+            key={i}
             publicacion={publicacion}/>
             )
         })      
@@ -47,7 +50,7 @@ export default function PubList(props) {
         <Row className= {styles.titleRow}>
         <h1>Productos de {categoriaName}</h1>
         </Row>  
-        <Row className="row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5">
+        <Row className="row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5" style={{paddingBottom: 60}}>
         {getCards()}
         </Row>
         </Container>

@@ -5,7 +5,7 @@ const router = express.Router();
 
   router.get('/:id',(req, res) => {
     const idCategoria = req.params.id;
-    const sql = 'SELECT * FROM categorias WHERE id = ?';
+    const sql = 'SELECT * FROM categorias WHERE idcategoria = ?';
 
     connection.query(sql, [idCategoria], (err, result) => {
       if (err) {

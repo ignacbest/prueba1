@@ -11,31 +11,19 @@ router.get('/check', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  
-    const sql = `SELECT *
-                 FROM usuarios
-                 WHERE email = ?
-                   AND password = ?`;
+    const sql = `SELECT * FROM usuarios WHERE email = ? AND password = ?`;
   
     conexion.query(sql, [req.body.email, req.body.password], (err, result) => {
       if (err) {
         console.log('Error al verificar el usuario');
       } else {
         if (result.length === 1) {
-          console.log(result);
-  
           const nombreCompleto = `${result[0].nombre} ${result[0].apellido}`;
-  
           req.session.user = {
             name: nombreCompleto,
             id: result[0].id,
           };
-  
-          console.log(req.session.user);
-  
-          res
-            .status(200)
-            .json({ message: 'Usuario valido', data: nombreCompleto });
+          res.status(200).json({ message: 'Usuario valido', data: nombreCompleto });
         } else {
           res.status(401).json({ message: 'Email y/o contraseña incorrecta' });
         }

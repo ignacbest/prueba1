@@ -23,12 +23,11 @@ export default function PubCard(props) {
       const handleHeart = () => {
         alert('Se agrego a favoritos')
       }
-      const imageUrl = `http://localhost:8000/images/${imagen}`
+      const imageUrl = `http://192.168.31.124:8000/images/${imagen}`
 
     return (
       <Col className="my-4  py-4">
-        
-        <Card className="h-100">
+        <Card className="h-100" >
         <FontAwesomeIcon color ="red" icon={faHeart} onClick={handleHeart}/>
         <Card.Img style={cardImageStyle} variant="top" src={imageUrl}/>
         <Card.Body>
@@ -36,7 +35,6 @@ export default function PubCard(props) {
           <Card.Text>{descripcion_S}</Card.Text>
         </Card.Body>
         <Card.Footer className="text-muted">${precio}</Card.Footer>
-        
       </Card>
       <Button onClick={() => history.push(`/detail/${publicacion.id}`)}>Ir al producto</Button>
       </Col>

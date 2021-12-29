@@ -16,7 +16,7 @@ router.get('/',(req, res) => {
   });
 
   router.get('/categoria/:id',(req, res) => {
-    const sql = 'SELECT * FROM publicaciones  WHERE cat_id = ?';
+    const sql = 'SELECT * FROM veterinaria.publicaciones  WHERE cat_id = ?';
     const idCategoria = req.params.id
 
     connection.query(sql,[idCategoria], (err, result) => {
