@@ -1,0 +1,133 @@
+.footer{
+    background-color: #222222;
+    height: 23.750vw;
+    padding-top: 2%;    
+    margin-bottom: 2%;
+}
+.LogoFooter {
+    width: 80%;
+    justify-content: flex-start;
+    padding-left: 30%;
+}
+a.nav-item.col-12{
+    color: white;
+    font-size: 1vw;
+    line-height: 1.219vw;
+}
+.nav-footer .nav-item{
+padding-top: 1vw;
+}
+div.flex-colum.nav{
+    padding-left: 10%;
+}
+.footer h6{
+    color:white;
+    font-size: 1.500vw;
+}
+.footer p{
+    color:white;
+    font-size: 1vw;
+    line-height: 1.219vw;
+}
+.contact-info img{
+padding-right: 1vw;
+}
+
+div.social-media{
+    margin-left: 0;
+    margin-bottom: 3rem;
+}
+.gx-5{
+ --bs-gutter-x: 3.5rem;
+}
+.social-media-row{
+    width: 75%;
+} 
+.social-media img{
+   width: 1.688vw;
+   margin: 3%;
+}
+.social-media a{
+    width: 1.688vw;
+ }
+#mailto{
+    display: none;
+}
+.copyright{
+    position: absolute;
+    width: 99%;
+    height: 10%;
+    text-align: center;  
+    margin: 0 auto;
+}
+.copyright p{
+font-style: normal;
+font-weight: normal;
+font-size: 0.8rem;
+line-height: 1rem;
+text-transform: uppercase;
+color: #333333;
+}
+@media (max-width: 1199.98px) {
+    .footer{
+        height: auto;
+        padding-top:10%;
+        padding-bottom: 5%;
+    }
+    a.nav-item.col-12{
+        font-size: 1.5vw;
+        line-height: 2vw;
+    }
+    .footer p{
+        font-size: 1.5vw;
+        line-height: 2vw;
+        padding: 0;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .contact-info{
+        display: none;
+    }
+    .footer h6{
+        display: none;
+    }
+    .logo-footer img{
+        width: auto;
+        margin: auto 5vw;
+    }
+    div.flex-colum.nav{
+        padding-left: 2%;
+    }
+    a.nav-item.col-12{
+        font-size: 3vw;
+        padding: 3vw;
+    }
+    div.social-media{
+        width: 100%;
+        flex-wrap: nowrap;
+        padding-left: 1%;
+        padding-top: 10%;
+        margin-bottom: 0;
+        margin-left: 2%;
+    }
+    
+    #mailto{
+        display:inherit;
+    }
+    .social-media img{
+        width: 3vw;
+     }
+    .social-media-row{
+        width: 100%;
+    } 
+    .justify-content-around {
+        width:70%;
+        padding-top: 3vw;
+        padding-bottom: 3vw;
+    }
+    .copyright p{
+        margin: auto; 
+        /* font-size: 3vw; */
+    }
+}

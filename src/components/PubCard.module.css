@@ -1,5 +1,5 @@
-asd {
-  position: absolute;
-  top: 0;
-  right: 0;
+.bottonProd {
+  justify-content: center;
+  align-content: center;
+  padding: 10px;
 }

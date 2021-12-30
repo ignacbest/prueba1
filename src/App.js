@@ -4,8 +4,6 @@ import NavigationBar from './components/NavigationBar';
 import Carousel from './components/Carousel';
 import PubsList from './components/PubsList';
 
-
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { BrowserRouter, Switch, Route} from 'react-router-dom';

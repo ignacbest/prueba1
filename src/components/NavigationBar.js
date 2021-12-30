@@ -7,8 +7,6 @@ import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Button from 'react-bootstrap/Button'
-
-
 import styles from './Navigation.module.css'
 
 import {useHistory} from 'react-router-dom'
@@ -18,85 +16,85 @@ import {useHistory} from 'react-router-dom'
 import logo from '../assets/images/logo.png'
 
 export default function NavigationBar(props) {
-    const [showLogin, setShowLogin] = useState(false);
-    const [showRegister, setShowRegister] = useState(false);
+const [showLogin, setShowLogin] = useState(false);
+const [showRegister, setShowRegister] = useState(false);
 
-    const history = useHistory();
+const history = useHistory();
 
-    const navbarStyle = {
+const navbarStyle = {
         backgroundColor: '#ffffff',
     };
 
-    const handleRegisterClick = () => {
+const handleRegisterClick = () => {
         setShowRegister(true);
     }
 
-    const handleCloseRegisterLogin = () => {
+const handleCloseRegisterLogin = () => {
         setShowRegister(false);
     }
-    
-    const handleLoginClick = () => {
+
+const handleLoginClick = () => {
         setShowLogin(true);
         
     };
 
-    const handleCloseLogin = () => {
+const handleCloseLogin = () => {
         setShowLogin(false);
         
     };
 
-    const handleCreate = async (nombre, apellido, email, password) => {
-        const url = 'http://192.168.31.124:8000/usuarios'
-        const params = { nombre, apellido, email, password }
-        const response = await fetch(url, {
-            method: 'POST',
-            body: JSON.stringify(params),
-            headers: {'Content-Type': 'application/json'}
-           })  
-           const data = await response.json();
-           if (response.status === 200) { 
-            handleCloseRegisterLogin()
-           } else {
-            alert(data.message)
-           }
+const handleCreate = async (nombre, apellido, email, password) => {
+    const url = 'http://192.168.31.124:8000/usuarios'
+    const params = { nombre, apellido, email, password }
+    const response = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(params),
+        headers: {'Content-Type': 'application/json'}
+    })  
+    const data = await response.json();
+    if (response.status === 200) { 
+        handleCloseRegisterLogin()
+    } else {
+        alert(data.message)
     }
+}
 
-    const handleLogin = async(email, password) => {
-        const url = 'http://192.168.31.124:8000/auth'
-        const params = { email, password }
-        const response = await fetch(url, {
-             method: 'POST',
-             body: JSON.stringify(params),
-             headers: {'Content-Type': 'application/json'},
-             credentials: 'include', 
-        });
-        const data = await response.json();
-        if(response.status === 200) {
-           props.updateUser({ name: data.data })
-            handleCloseLogin();
-        } else {
-            alert(data.message)
-        }
-    };
-
-    const handleLogout = async () =>{
-        const url = 'http://192.168.31.124:8000/auth'
-        const response = await fetch(url,{
-            method: 'DELETE',
-            credentials: 'include',
-        });
-        const data = response.json()
-        if (response.status === 200) {
-            props.updateUser(null)
-        } else {
-            alert(data.message)
-        }
+const handleLogin = async(email, password) => {
+    const url = 'http://192.168.31.124:8000/auth'
+    const params = { email, password }
+    const response = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(params),
+        headers: {'Content-Type': 'application/json'},
+        credentials: 'include', 
+    });
+    const data = await response.json();
+    if(response.status === 200) {
+        props.updateUser({ name: data.data })
+        handleCloseLogin();
+    } else {
+        alert(data.message)
     }
+};
 
-    const handleHistory = (cat_id) => {
-        props.setCategoria(cat_id)
-        history.push("/")
+const handleLogout = async () =>{
+    const url = 'http://192.168.31.124:8000/auth'
+    const response = await fetch(url,{
+        method: 'DELETE',
+        credentials: 'include',
+    });
+    const data = response.json()
+    if (response.status === 200) {
+        props.updateUser(null)
+    } else {
+        alert(data.message)
     }
+}
+
+const handleHistory = (cat_id) => {
+    props.setCategoria(cat_id)
+    history.push("/")
+}
 
     return (
         <>
@@ -119,7 +117,7 @@ export default function NavigationBar(props) {
                         Favoritos
                     </Nav.Link>
 
-                    <NavDropdown
+                <NavDropdown
                         alignRight
                         title={props.user.name}
                         id="basic-nav-dropdown">
@@ -128,15 +126,15 @@ export default function NavigationBar(props) {
                     </NavDropdown.Item>
                 </NavDropdown>
             </>
-        ) : (
-            <>
-            <Button variant="light" onClick={handleRegisterClick}>Registrarse</Button>
-            <Button onClick={handleLoginClick}>Iniciar Sesion</Button>
-            </>
-        )} 
-                </Nav>
-             </Navbar.Collapse> 
-        </Navbar>
+                    ) : (
+                        <>
+                        <Button variant="light" onClick={handleRegisterClick}>Registrarse</Button>
+                        <Button onClick={handleLoginClick}>Iniciar Sesion</Button>
+                        </>
+                    )} 
+                    </Nav>
+                </Navbar.Collapse> 
+            </Navbar>
 
             <>
 

@@ -3,6 +3,7 @@ import PubCard from './PubCard';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import styles from './PubList.module.css'
+import Footer from './Footer'
 
 export default function PubList(props) {
     const [publicaciones, setPublicaciones] = useState([]);
@@ -46,12 +47,15 @@ export default function PubList(props) {
     
 
     return (
-        <Container fluid>
+        <Container fluid >
         <Row className= {styles.titleRow}>
         <h1>Productos de {categoriaName}</h1>
         </Row>  
         <Row className="row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5" style={{paddingBottom: 60}}>
         {getCards()}
+        </Row>
+        <Row style={{backgroundColor: '#ccc'}}>
+        <Footer/>
         </Row>
         </Container>
     )
